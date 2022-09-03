@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 import cmd
 import sys
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
+classes = ["BaseModel"]
 
 class HBNBCommand(cmd.Cmd):
     '''class entry point of command interpreter'''
@@ -23,13 +26,20 @@ class HBNBCommand(cmd.Cmd):
         '''Quit command to exit the program'''
         sys.exit(1)
         
-    def do_EOF(self):  # YET TO IMPLEMENT EOF
+    def do_EOF(self, line):
         '''EOF condition to exit the program'''
-        pass
+        return True
     
-    def do_create(self, arg):    # YET TO IMPLEMENT
+    def do_create(self, arg):
         '''Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id'''
-        pass
+        if arg:
+            if arg in classes:
+                new_instance = eval("{}()".format(classes[0]))
+                new_instance.save()
+            else:
+                print("** class doesn't exist")
+        else:
+            print("** class name missing **")
     
     def do_show(self, arg):  #YET TO IMPLEMENT
         '''Prints the string representation of an instance based on the class name and id'''
