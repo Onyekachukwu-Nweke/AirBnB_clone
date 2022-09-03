@@ -36,6 +36,7 @@ class HBNBCommand(cmd.Cmd):
         if arg:
             if arg in classes:
                 new_instance = eval("{}()".format(classes[0]))
+                print(new_instance.id)
                 new_instance.save()
             else:
                 print("** class doesn't exist")
@@ -56,11 +57,11 @@ class HBNBCommand(cmd.Cmd):
                 if key not in objects.keys():
                     print("** no instance found **")
                 else:
-                    print(objects.items())
+                    print(objects[key])
             else:
                 print("** class doesn't exist **")
     
-    def do_destroy(self, arg):   #YET TO IMPLEMENT
+    def do_destroy(self, arg):
         '''Deletes an instance based on the class name and id (save the change into the JSON file)'''
         args = arg.split()
         if len(args) == 0:
