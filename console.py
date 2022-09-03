@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import cmd
 import sys
+import models
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -41,9 +42,23 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
     
-    def do_show(self, arg):  #YET TO IMPLEMENT
+    def do_show(self, arg):
         '''Prints the string representation of an instance based on the class name and id'''
-        pass
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            if args[0] in classes:
+                objects = models.storage.all()
+                key = "{}.{}".format(args[0], args[1])
+                if key not in objects.keys():
+                    print("** no instance found **")
+                else:
+                    print(objects.items())
+            else:
+                print("** class doesn't exist **")
     
     def do_destroy(self, arg):   #YET TO IMPLEMENT
         '''Deletes an instance based on the class name and id (save the change into the JSON file)'''
