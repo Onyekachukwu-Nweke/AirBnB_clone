@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Entry point of the command interpreter
+"""
+
 import cmd
 import sys
 import models
@@ -36,6 +40,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         '''EOF condition to exit the program'''
+        print()
         return True
 
     def do_create(self, arg):
