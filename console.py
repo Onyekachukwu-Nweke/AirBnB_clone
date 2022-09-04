@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
-classes = ["BaseModel"]
+classes = ["BaseModel", "User"]
 
 class HBNBCommand(cmd.Cmd):
     '''class entry point of command interpreter'''
