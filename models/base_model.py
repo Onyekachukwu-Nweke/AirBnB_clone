@@ -4,10 +4,10 @@
     This file creates a base class upon other classes will be built
     will be built upon
 """
-
 from datetime import datetime
 import uuid
 import models
+
 
 class BaseModel:
     """
