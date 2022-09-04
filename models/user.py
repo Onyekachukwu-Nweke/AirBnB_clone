@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import email
-from base_model import BaseModel
+from models.base_model import BaseModel
 from models import storage
 
 class User(BaseModel):
@@ -10,9 +10,4 @@ class User(BaseModel):
     email = ''
     password = ''
     first_name = ''
-    last_name = ''
-    
-    def __init__(self, *args, **kwargs):
-        '''Instantiation Method'''
-        super().__init__(*args, **kwargs)
-                                                
+    last_name = ''                                     

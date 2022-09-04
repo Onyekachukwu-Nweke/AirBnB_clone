@@ -3,9 +3,14 @@ import cmd
 import sys
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models.engine.file_storage import FileStorage
 
-classes = ["BaseModel", "User"]
 
 class HBNBCommand(cmd.Cmd):
     '''class entry point of command interpreter'''
@@ -14,6 +19,8 @@ class HBNBCommand(cmd.Cmd):
         '''Instantiantion'''
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
+
+    classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
         
     def emptyline(self):
         '''Do nothing when an emptyline is entered as input'''
@@ -30,12 +37,13 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         '''EOF condition to exit the program'''
         return True
-    
+
     def do_create(self, arg):
         '''Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id'''
         if arg:
-            if arg in classes:
-                new_instance = eval("{}()".format(classes[0]))
+            args = arg.split()
+            if args[0] in HBNBCommand.classes:
+                new_instance = eval("{}()".format(args[0]))
                 print(new_instance.id)
                 new_instance.save()
             else:
@@ -96,10 +104,40 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         print (to_print)
     
-    def do_update(self, arg):  #YET TO IMPLEMENT
+    def do_update(self, arg):
         '''Updates an instance based on the class name and id by adding or updating attribute'''
-        pass
+        args = arg.split()
+        if len(args) < 1:
+            print("** class name missing **")
+            return
+        if args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        key = "{}.{}".format(args[0],args[1])
+        if key not in storage.all().keys():
+            print("** no instance found **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        try:
+            # Type checking
+            if isinstance(eval(args[3]), int):
+                args[3] = int(args[3])
+            elif isinstance(eval(args[3]), float):
+                args[3] = float(args[3])
+        except NameError:
+            args[3] = args[3]
 
+        obj = storage.all()[key]
+        setattr(obj, args[2], args[3])
+        storage.all()[key].save()
     
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
