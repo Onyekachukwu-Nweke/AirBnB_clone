@@ -80,9 +80,21 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def do_all(self, arg):   #YET TO IMPLEMENT
+    def do_all(self, arg):
         ''' Prints all string representation of all instances based or not on the class name'''
-        pass
+        args = arg.split()
+        objects = models.storage.all()
+        to_print = []
+        if len(args) == 0:
+            for v in objects.values():
+                to_print.append(str(v))
+        elif args[0] in classes:
+            for k, v in objects.items():
+                if args[0] in k:
+                    to_print.append(str(v))
+        else:
+            print("** class doesn't exist **")
+        print (to_print)
     
     def do_update(self, arg):  #YET TO IMPLEMENT
         '''Updates an instance based on the class name and id by adding or updating attribute'''
