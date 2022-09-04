@@ -15,11 +15,7 @@ from models.engine.file_storage import FileStorage
 class HBNBCommand(cmd.Cmd):
     '''class entry point of command interpreter'''
 
-    def __init__(self):
-        '''Instantiantion'''
-        cmd.Cmd.__init__(self)
-        self.prompt = "(hbnb) "
-
+    prompt = "(hbnb) "
     classes = ["BaseModel", "User", "Place", "State",
                "City", "Amenity", "Review"]
 
@@ -54,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
                 print(new_instance.id)
                 new_instance.save()
             else:
-                print("** class doesn't exist")
+                print("** class doesn't exist **")
         else:
             print("** class name missing **")
 
