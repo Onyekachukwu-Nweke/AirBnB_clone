@@ -158,9 +158,9 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             args[3] = args[3]
 
-        obj = storage.all()[key]
+        obj = models.storage.all()[key]
         setattr(obj, args[2], args[3])
-        storage.all()[key].save()
+        models.storage.all()[key].save()
 
 
 if __name__ == '__main__':
