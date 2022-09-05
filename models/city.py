@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+    This module shows the city
+"""
 from models.base_model import BaseModel
 
 

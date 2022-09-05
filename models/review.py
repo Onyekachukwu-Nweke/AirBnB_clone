@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This shows past reviews of the apartment
+"""
 from models.base_model import BaseModel
 
 

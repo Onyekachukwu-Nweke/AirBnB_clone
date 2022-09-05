@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This shows the location on the map
+"""
 from models.base_model import BaseModel
 
 
