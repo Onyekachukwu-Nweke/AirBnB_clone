@@ -4,7 +4,7 @@
 import unittest
 from models.user import User
 import datetime
-from models import storage
+from models.base_model import BaseModel
 
 
 class UserCase(unittest.TestCase):
