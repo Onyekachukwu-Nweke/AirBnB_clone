@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
     This file creates a base class upon other classes will be built
     will be built upon
@@ -17,7 +16,6 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """ Initializes the instance """
-
         if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -30,19 +28,16 @@ class BaseModel:
 
     def __str__(self):
         """ Returns the string representation of the instance """
-
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                       self.__dict__))
 
     def save(self):
         """ This updates the time anytime a change is made """
-
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """ Returns the dictionary representation of the instance """
-
         return_dict = {}
         for key, value in self.__dict__.items():
             return_dict[key] = value
