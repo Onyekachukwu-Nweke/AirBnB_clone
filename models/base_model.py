@@ -32,7 +32,9 @@ class BaseModel:
                                       self.__dict__))
 
     def save(self):
-        """ This updates the time anytime a change is made """
+        """
+        This updates the time anytime a change is made 
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
