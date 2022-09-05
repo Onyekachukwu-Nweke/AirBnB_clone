@@ -4,7 +4,6 @@
     This module contains the file storage mechanism of
     the AirBnB clone
 """
-
 import os
 import json
 from models.base_model import BaseModel
@@ -25,7 +24,6 @@ class FileStorage:
 
     def all(self):
         """ Returns the dictionary __objects """
-
         return FileStorage.__objects
 
     def new(self, obj):
@@ -33,7 +31,6 @@ class FileStorage:
             sets in __objects the obj with key
             <obj class name>.id
         """
-
         FileStorage.__objects["{}.{}".
                               format(obj.__class__.__name__, obj.id)] = obj
 
@@ -42,7 +39,6 @@ class FileStorage:
             Serializes __objects to the JSON file
             (path: __file_path)
         """
-
         try:
             my_obj = {}
 
@@ -58,7 +54,6 @@ class FileStorage:
         """
             Deserializes the JSON file to __objects
         """
-
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in (json.load(f)).items():

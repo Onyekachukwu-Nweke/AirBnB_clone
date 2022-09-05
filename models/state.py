@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+State in which the place is located
+"""
 from models.base_model import BaseModel
 
 
