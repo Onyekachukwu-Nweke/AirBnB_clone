@@ -66,6 +66,10 @@ ul.popover li h2{
     font-size: 14px;
 }
 
+ul.popover li > ul{
+    list-style: none;
+}
+
 ul.popover li{
     margin-top: 0px;
     margin-left: 15px;
